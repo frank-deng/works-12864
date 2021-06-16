@@ -1,0 +1,16 @@
+{
+  "name": "pic12864",
+  "version": "0.1.0",
+  "description": "Display images to 128x64 monochrome LCD screen",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Frank Deng",
+  "license": "ISC",
+  "dependencies": {
+    "jimp": "^0.16.1",
+    "rgbquant": "^1.1.2",
+    "serialport": "^9.1.0"
+  }
+}
