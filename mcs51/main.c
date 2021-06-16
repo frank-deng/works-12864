@@ -13,7 +13,7 @@ static uchar __data
 	screen_buf[8],
 	screen_buf_idx=0;
 
-void procCommand(uchar cmd){
+inline void procCommand(uchar cmd){
 	//12864 clear screen
 	if(COMMAND_CLEAR_SCREEN==cmd){
 		GXM12864_cls();
@@ -39,7 +39,7 @@ void procCommand(uchar cmd){
 	screen_y=0;
 	screen_buf_idx=0;
 }
-void procData(uchar ch){
+inline void procData(uchar ch){
 	//Setup LED
 	if(COMMAND_SET_LED==current_command){
 		current_command=COMMAND_NULL;
@@ -57,7 +57,7 @@ void procData(uchar ch){
 		return;
 	}
 }
-void procChar(uchar ch){
+inline void procChar(uchar ch){
 	if(COMMAND_NULL==current_command){
 		procCommand(ch);
 	}else{
