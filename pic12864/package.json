@@ -4,6 +4,7 @@
   "description": "Display images to 128x64 monochrome LCD screen",
   "main": "index.js",
   "scripts": {
+    "start": "node ./index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Frank Deng",
