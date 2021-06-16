@@ -66,7 +66,7 @@ void procChar(uchar ch){
 }
 void main()
 {
-  uchar __data com_read;
+  uchar com_read;
 
   //Init watchdog
   __asm__("mov 0xE1,#0b00111110");

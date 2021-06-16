@@ -3,7 +3,7 @@
 static uchar __data com_buf[COM_BUF_LEN];
 static uchar __data *com_buf_head, *com_buf_tail, com_buf_size;
 
-void com_init(void)
+inline void com_init(void)
 {
 	SCON = 0x50;//设置串口8位UART，波特率由T1产生，允许接收
 	PCON = 0x80;//SMOD为1，波特率不加倍
@@ -19,17 +19,18 @@ void com_init(void)
   com_buf_head = com_buf_tail = com_buf;
   com_buf_size = 0;
 }
-static uchar com_buf_put(uchar __data com_read)
+inline static uchar com_buf_put(uchar com_read)
 {
+    EA = 0;
     if (COM_BUF_LEN == com_buf_size)
     {
+        EA = 1;
         return 0;
     }
 
     *com_buf_head = com_read;
 
     //Update buffer info
-    EA = 0;
     if (com_buf_head >= (com_buf + COM_BUF_LEN - 1))
     {
         com_buf_head = com_buf;
@@ -43,17 +44,18 @@ static uchar com_buf_put(uchar __data com_read)
 
     return 1;
 }
-uchar com_rcv(uchar __data *buf)
+inline uchar com_rcv(uchar *buf)
 {
+    EA = 0;
     if (0 == com_buf_size)
     {
+        EA = 1;
         return 0;
     }
 
     *buf = *com_buf_tail;
 
     //Update buffer info
-    EA = 0;
     if (com_buf_tail >= (com_buf + COM_BUF_LEN - 1))
     {
         com_buf_tail = com_buf;

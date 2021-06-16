@@ -4,8 +4,8 @@
 #include "misc.h"
 
 void com_init(void);
-uchar com_rcv(uchar __data *buf);
-#define COM_BUF_LEN 16
+uchar com_rcv(uchar *buf);
+#define COM_BUF_LEN 64
 
 void serial_receiver(void) __interrupt 4;
 
